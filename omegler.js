@@ -63,10 +63,10 @@ $(document).ready(function () {
             console.log("[debug] countmessage");
             msgCount = $('.strangermsg').length;
 
-            // Enable pause on the 10th stranger message if paused is off 
-			         // so we don't lose our chat log once we've chatted a while
-			         if (msgCount == 10 && !paused)
-				            $("#pausebutton").click(); 
+            // Enable pause on the 3rd stranger message if paused is off 
+            // so we don't lose our chat log once we've chatted a while
+            if (msgCount == 3 && !paused)
+                $("#pausebutton").click(); 
         }
         if(stopper == 0 && $(".newchatbtnwrapper").is(":visible")){
             console.log("[debug] reconnect button show up");
