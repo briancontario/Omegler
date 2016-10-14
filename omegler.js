@@ -1,7 +1,7 @@
 $(document).ready(function () {
  
     var paused = false;
-    var pause = $("<button>Pause Omegler</button>").bind('click', function(){
+    var pause = $("<button id='pausebutton'>Pause Omegler</button>").bind('click', function(){
         paused = !paused;
         $(this).text(paused && 'Unpause Omegler' || 'Pause Omegler');
     });
@@ -34,6 +34,7 @@ $(document).ready(function () {
         stopper = 0;
         
         setTimeout(function(){
+            $(".statuslog:first", document).html(new Date() + "<br>" + $(".statuslog:first", document).html());
             $(".sendbtn", document).click();
         }, delay || 0);
     }
@@ -61,6 +62,11 @@ $(document).ready(function () {
         if ($('.strangermsg').length > msgCount) {
             console.log("[debug] countmessage");
             msgCount = $('.strangermsg').length;
+
+            // Enable pause on the 10th stranger message if paused is off 
+			         // so we don't lose our chat log once we've chatted a while
+			         if (msgCount == 10 && !paused)
+				            $("#pausebutton").click(); 
         }
         if(stopper == 0 && $(".newchatbtnwrapper").is(":visible")){
             console.log("[debug] reconnect button show up");
